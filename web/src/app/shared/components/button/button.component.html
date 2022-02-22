@@ -1,0 +1,8 @@
+<button class="button">
+  <svg-icon
+    *ngIf="hasIcon"
+    src="{{ iconPath }}"
+    [class]="'float-left'"
+  ></svg-icon>
+  <span>{{ label }}</span>
+</button>

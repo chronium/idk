@@ -1,0 +1,1 @@
+﻿global using Idk.Domain.Common.Models;

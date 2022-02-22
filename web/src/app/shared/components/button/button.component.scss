@@ -1,0 +1,4 @@
+.button {
+  @apply bg-zinc-50 hover:bg-zinc-200 active:bg-zinc-100;
+  @apply rounded font-medium px-3 py-1 my-2 inline-flex items-center;
+}

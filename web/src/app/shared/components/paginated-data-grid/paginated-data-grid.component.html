@@ -1,0 +1,22 @@
+<table class="border-collapse w-100 table-auto bg-white divide-y text-center">
+  <thead>
+    <tr>
+      <th *ngFor="let header of headers">{{ header }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of data" class="border-b">
+      <td *ngFor="let col of row" class="px-3">
+        <div [ngSwitch]="col.kind">
+          <div *ngSwitchCase="'text'">{{ col.text }}</div>
+          <div *ngSwitchCase="'icon'" class="px-6">
+            <svg-icon
+              src="{{ iconPath(col) }}"
+              [class]="'float-left'"
+            ></svg-icon>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

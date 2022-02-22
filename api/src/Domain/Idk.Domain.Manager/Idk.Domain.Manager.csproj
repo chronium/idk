@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Persistence\Idk.Persistence.Manager\Idk.Persistence.Manager.csproj" />
+    <ProjectReference Include="..\Idk.Domain.Common\Idk.Domain.Common.csproj" />
+  </ItemGroup>
+
+</Project>
