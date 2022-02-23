@@ -1,8 +1,15 @@
-<button class="button">
+<button
+  class="button"
+  (onClick)="!disabled && onClick.emit($event)"
+  [class.disabled]="disabled"
+  [class.accent]="accent"
+>
   <svg-icon
     *ngIf="hasIcon"
     src="{{ iconPath }}"
     [class]="'float-left'"
+    class="mt-1"
+    [svgClass]="disabled && 'fill-zinc-400'"
   ></svg-icon>
-  <span>{{ label }}</span>
+  <span class="my-auto"><ng-content></ng-content></span>
 </button>

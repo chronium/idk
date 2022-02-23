@@ -1,4 +1,15 @@
 .button {
   @apply bg-zinc-50 hover:bg-zinc-200 active:bg-zinc-100;
-  @apply rounded font-medium px-3 py-1 my-2 inline-flex items-center;
+  @apply rounded font-medium px-3 py-1 my-1 mx-1;
+  @apply ring-inset ring-1 ring-zinc-100 hover:ring-zinc-300 active:ring-zinc-50;
+}
+
+.disabled {
+  @apply text-zinc-400 bg-zinc-200 hover:bg-zinc-200 active:bg-zinc-200;
+  @apply ring-inset ring-1 ring-zinc-300 hover:ring-zinc-300 active:ring-zinc-300;
+  @apply cursor-not-allowed;
+}
+
+.accent {
+  @apply ring-inset ring-1 ring-sky-300 hover:ring-sky-400 active:ring-sky-200;
 }

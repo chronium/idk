@@ -6,8 +6,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent implements OnInit {
-  @Input() label!: string;
   @Input() icon?: string;
+  @Input() disabled = false;
+  @Input() accent = false;
 
   @Output() onClick = new EventEmitter();
 
