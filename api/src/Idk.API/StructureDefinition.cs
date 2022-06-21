@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
+﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OpenApi.Models;
 
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -25,10 +24,14 @@ public class StructureDefinition {
 }
 
 public static class Structure {
+
    public class TenantApiGroupAttribute : ApiExplorerSettingsAttribute {
+
       public TenantApiGroupAttribute() => GroupName = TenantV1Group;
    }
+
    public class ManagerApiGroupAttribute : ApiExplorerSettingsAttribute {
+
       public ManagerApiGroupAttribute() => GroupName = ManagerV1Group;
    }
 
@@ -50,6 +53,7 @@ public static class Structure {
 }
 
 public static class SwaggerGenExtensions {
+
    public static void SwaggerDoc(this SwaggerGenOptions options, StructureDefinition structureDef)
       => options.SwaggerDoc(structureDef.Name, new OpenApiInfo {
          Title = structureDef.Title

@@ -2,9 +2,11 @@
 
 public class Tenant {
    public TenantId Id { get; set; } = default!;
+
    [MaxLength(128)]
    [Required]
    public string Name { get; set; } = default!;
+
    [MaxLength(63)]
    [Required]
    public string Subdomain { get; set; } = default!;
@@ -17,9 +19,5 @@ public class Tenant {
       };
 
    public static Tenant? Maybe(DbTenant? dbTenant)
-      => dbTenant is not null ? new() {
-         Id = TenantId.Of(dbTenant.Id),
-         Name = dbTenant.Name,
-         Subdomain = dbTenant.Subdomain,
-      } : null;
+      => dbTenant is null ? null : Of(dbTenant);
 }

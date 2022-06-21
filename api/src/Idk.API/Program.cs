@@ -1,8 +1,14 @@
-using Idk.Application.Manager;
 using Idk.DataAccess.Manager.EF;
+using Idk.DataAccess.Tenant.EF;
 using Idk.Persistence.Manager;
+using Idk.Persistence.Tenant;
 
 using Microsoft.EntityFrameworkCore;
+
+using System.Text.Json.Serialization;
+
+using ManagerDummy = Idk.Application.Manager.Dummy;
+using TenantDummy = Idk.Application.Tenant.Dummy;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +18,13 @@ builder.Services.AddDbContext<ManagerContext>(options =>
    options
       .UseSqlServer(builder.Configuration.GetConnectionString("IdkManager")));
 
-builder.Services.AddControllers();
+builder.Services.AddDbContext<TenantContext>(options =>
+   options
+      .UseSqlServer(builder.Configuration.GetConnectionString("IdkTenant")));
+
+builder.Services.AddControllers().AddJsonOptions(options => {
+   options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+   });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options => {
@@ -33,9 +45,15 @@ builder.Services.AddSwaggerGen(options => {
       : type.FullName;
    });
 });
-builder.Services.AddMediatR(typeof(Dummy).Assembly);
+
+builder.Services.AddMediatR(typeof(ManagerDummy).Assembly);
+builder.Services.AddMediatR(typeof(TenantDummy).Assembly);
+
 builder.Services.RegisterManagerDataAccess();
-builder.Services.AddAutoMapper(typeof(Dummy));
+builder.Services.RegisterTenantDataAccess();
+
+builder.Services.AddAutoMapper(typeof(ManagerDummy));
+builder.Services.AddAutoMapper(typeof(TenantDummy));
 
 var app = builder.Build();
 
@@ -49,7 +67,9 @@ if (app.Environment.IsDevelopment()) {
    });
 }
 
-app.UseHttpsRedirection();
+if (app.Environment.IsProduction()) {
+   app.UseHttpsRedirection();
+}
 
 app.UseAuthorization();
 

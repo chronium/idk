@@ -1,8 +1,4 @@
-﻿using Idk.Domain.Manager;
-using Idk.Persistence.Manager;
-using Idk.Persistence.Manager.Models;
-
-namespace Idk.DataAccess.Manager.EF;
+﻿namespace Idk.DataAccess.Manager.EF;
 
 public class TenantDataService : ITenantDataService {
    private readonly ManagerContext context;

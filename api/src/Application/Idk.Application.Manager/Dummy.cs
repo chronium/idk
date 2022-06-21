@@ -1,3 +1,4 @@
 ﻿namespace Idk.Application.Manager;
 
-public class Dummy { }
+public class Dummy {
+}

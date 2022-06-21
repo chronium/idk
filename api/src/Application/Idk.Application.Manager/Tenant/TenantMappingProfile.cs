@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-
-namespace Idk.Application.Manager.Tenant;
+﻿namespace Idk.Application.Manager.Tenant;
 
 public class TenantMappingProfile : Profile {
    public TenantMappingProfile() {

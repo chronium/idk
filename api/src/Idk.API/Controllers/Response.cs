@@ -1,7 +1,8 @@
 ﻿namespace Idk.API.Controllers;
 
 public static class ResponseExtensions {
-   public static IActionResult AsResult<T>(this T? response) 
+
+   public static IActionResult AsResult<T>(this T? response)
       => new NotFoundResponse<T>(response);
 
    public static async Task<IResponse<T>> AsQueryResponse<T>(this Task<T?> response)
@@ -14,7 +15,7 @@ public static class ResponseExtensions {
 public interface IResponse<T> : IActionResult { }
 
 public record NotFoundResponse<T>(T? Response) : IResponse<T> {
-   public Task ExecuteResultAsync(ActionContext context) 
+   public Task ExecuteResultAsync(ActionContext context)
       => new NotFoundObjectResult(Response).ExecuteResultAsync(context);
 }
 
